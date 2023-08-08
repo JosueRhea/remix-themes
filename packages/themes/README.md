@@ -1,13 +1,13 @@
 ## Remix themes
 
-Just a wrapper of [next-themes](https://github.com/pacocoursey/next-themes).
+Simple dark and light mode for remix with SSR
 
 ### Example
 
 ```tsx 
 // root.tsx
-import { cssBundleHref } from "@remix-run/css-bundle";
-import type { LinksFunction } from "@remix-run/node";
+
+import type { LoaderArgs } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -15,18 +15,15 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
-import { ThemeProvider } from "remix-themes";
-import stylesheet from "~/tailwind.css";
+import { ThemeProvider, getSSRTheme, useTheme } from "remix-themes";
 
-export const links: LinksFunction = () => [
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-  { rel: "stylesheet", href: stylesheet },
-];
+export function App() {
+  const { theme } = useTheme();
 
-export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" className={theme} style={{ colorScheme: theme }}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -34,15 +31,44 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <ThemeProvider attribute="class">
-          <Outlet />
-          <ScrollRestoration />
-          <Scripts />
-          <LiveReload />
-        </ThemeProvider>
+        <Outlet />
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
       </body>
     </html>
   );
 }
 
+export function loader({ request }: LoaderArgs) {
+  const theme = getSSRTheme({ request });
+  return { theme };
+}
+
+export default function AppWithProviders() {
+  const data = useLoaderData();
+  return (
+    <ThemeProvider ssrTheme={data.theme} defaultTheme="dark">
+      <App />
+    </ThemeProvider>
+  );
+}
+```
+
+```tsx
+// _index.tsx
+
+export default function Page() {
+  const { theme, setTheme } = useTheme();
+  return (
+    <div>
+        <p>
+          Active theme: <span className="text-red-500">{theme}</span>
+        </p>
+        <select value={theme} onChange={e => setTheme(e.target.value as Theme)}>
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+        </select>
+    </div>
+  )
 ```

@@ -1,5 +1,5 @@
 import type { V2_MetaFunction } from "@remix-run/node";
-import { useTheme } from "remix-themes";
+import { Theme, useTheme } from "remix-themes";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -28,22 +28,10 @@ export default function Page() {
       <p>
         Active theme: <span className="text-red-500">{theme}</span>
       </p>
-      <div className="flex gap-x-2">
-        <button
-          className="px-4 py-2 border border-zinc-200 hover:border-zinc-400 transition-colors duration-300 rounded-md outline-none focus-visible:outline-zinc-400"
-          onClick={() => setTheme("dark")}
-          type="button"
-        >
-          Dark
-        </button>
-        <button
-          className="px-4 py-2 border border-zinc-200 hover:border-zinc-400 transition-colors duration-300 rounded-md outline-none focus-visible:outline-zinc-400"
-          onClick={() => setTheme("light")}
-          type="button"
-        >
-          Light
-        </button>
-      </div>
+      <select value={theme} onChange={e => setTheme(e.target.value as Theme)}>
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+      </select>
     </div>
   );
 }

@@ -7,7 +7,7 @@ import {
 } from "react";
 import { getCookie, setCookie } from "./util";
 
-type Theme = "light" | "dark";
+export type Theme = "light" | "dark";
 
 interface ThemeContextProps {
   theme: Theme;
