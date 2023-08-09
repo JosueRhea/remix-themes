@@ -5,7 +5,8 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "turbo run format",
-    "example": "pnpm --filter www --"
+    "example": "pnpm --filter www --",
+    "publish-packages": "turbo run build && changeset version && changeset publish"
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",
@@ -13,5 +14,8 @@
     "turbo": "latest"
   },
   "packageManager": "pnpm@8.6.10",
-  "name": "remix-themes"
+  "name": "remix-themes",
+  "dependencies": {
+    "@changesets/cli": "^2.26.2"
+  }
 }
