@@ -5,9 +5,9 @@ Dark and light mode with SSR
 ### Installation
 
 ```bash
-pnpm i remix-themes
+pnpm i @remix/themes
 #or
-npm i remix-themes
+npm i @remix/themes
 ```
 
 ### Usage
@@ -17,7 +17,7 @@ Firt create `app/theme.server.ts` to setup the session storage
 // app/theme.server.ts
 
 import { createCookieSessionStorage } from "@remix-run/node";
-import { Theme, isTheme } from "remix-themes";
+import { Theme, isTheme } from "@remix/themes";
 
 const themeStorage = createCookieSessionStorage({
   cookie: {
@@ -52,7 +52,7 @@ Update the `app/root.tsx` file. You'll ned a extra component that look like this
 ```tsx
 // app/root.tsx
 import type { LinksFunction, LoaderArgs, SerializeFrom } from "@remix-run/node";
-import { NonFlashOfWrongThemeEls, ThemeProvider, useTheme } from "remix-themes";
+import { NonFlashOfWrongThemeEls, ThemeProvider, useTheme } from "@remix/themes";
 import { getThemeSession } from "~/theme.server";
 import stylesheet from "~/tailwind.css";
 import { useLoaderData } from "@remix-run/react";
@@ -104,7 +104,7 @@ Create a new route in `app/routes/action.set-theme.tsx` that will contain the ac
 // app/routes/action.set-theme.tsx
 
 import { json, type ActionFunction, redirect } from "@remix-run/node";
-import { isTheme } from "remix-themes";
+import { isTheme } from "@remix/themes";
 import { getThemeSession } from "~/theme.server";
 
 export const action: ActionFunction = async ({ request }) => {
@@ -136,7 +136,7 @@ Now you can use the hook to see your current theme or change the theme.
 
 ```tsx
 // app/routes/_index.tsx
-import { Theme, Themed, useTheme } from "remix-themes";
+import { Theme, Themed, useTheme } from "@remix/themes";
 
 export default function Page() {
   const [theme, setTheme] = useTheme();

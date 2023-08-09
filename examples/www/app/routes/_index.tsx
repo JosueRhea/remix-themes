@@ -1,6 +1,5 @@
 import type { V2_MetaFunction } from "@remix-run/node";
-import { Theme, Themed, useTheme } from "remix-themes";
-// import { Theme, useTheme } from "remix-themes";
+import { Theme, Themed, useTheme } from "@remix/themes";
 
 export const meta: V2_MetaFunction = () => {
   return [

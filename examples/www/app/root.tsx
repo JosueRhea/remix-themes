@@ -9,7 +9,7 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import { NonFlashOfWrongThemeEls, ThemeProvider, useTheme } from "remix-themes";
+import { NonFlashOfWrongThemeEls, ThemeProvider, useTheme } from "@remix/themes";
 import { getThemeSession } from "~/theme.server";
 import stylesheet from "~/tailwind.css";
 

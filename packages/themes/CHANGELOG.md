@@ -1,4 +1,4 @@
-# remix-themes
+# @remix/themes
 
 ## 1.0.0
 
