@@ -36,6 +36,9 @@ importers:
       '@remix-run/serve':
         specifier: ^1.19.2
         version: 1.19.2
+      '@remix/themes':
+        specifier: workspace:*
+        version: link:../../packages/themes
       isbot:
         specifier: ^3.6.8
         version: 3.6.8
@@ -45,9 +48,6 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
-      remix-themes:
-        specifier: workspace:*
-        version: link:../../packages/themes
     devDependencies:
       '@remix-run/dev':
         specifier: ^1.19.2
