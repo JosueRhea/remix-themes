@@ -2,6 +2,7 @@
   "private": true,
   "sideEffects": false,
   "name": "www",
+  "version": "0.0.5",
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
