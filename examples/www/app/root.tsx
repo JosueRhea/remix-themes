@@ -1,5 +1,5 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
-import type { LinksFunction, LoaderArgs } from "@remix-run/node";
+import type { LinksFunction, LoaderArgs, SerializeFrom } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -9,7 +9,8 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import { ThemeProvider, getSSRTheme, useTheme } from "remix-themes";
+import { NonFlashOfWrongThemeEls, ThemeProvider, useTheme } from "remix-themes";
+import { getThemeSession } from "~/theme.server";
 import stylesheet from "~/tailwind.css";
 
 export const links: LinksFunction = () => [
@@ -17,15 +18,25 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
 ];
 
+export async function loader({ request }: LoaderArgs) {
+  const theme = await getThemeSession(request);
+
+  return { theme: theme.getTheme() };
+}
+
+type LoaderData = SerializeFrom<typeof loader>;
+
 export function App() {
-  const { theme } = useTheme();
+  const data = useLoaderData<LoaderData>();
+  const [theme] = useTheme();
 
   return (
-    <html lang="en" className={theme} style={{ colorScheme: theme }}>
+    <html lang="en" className={theme ?? ""}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
+        <NonFlashOfWrongThemeEls ssrTheme={Boolean(data.theme)} />
         <Links />
       </head>
       <body>
@@ -38,15 +49,11 @@ export function App() {
   );
 }
 
-export function loader({ request }: LoaderArgs) {
-  const theme = getSSRTheme({ request });
-  return { theme };
-}
-
 export default function AppWithProviders() {
-  const data = useLoaderData();
+  const data = useLoaderData<LoaderData>();
+  
   return (
-    <ThemeProvider ssrTheme={data.theme} defaultTheme="dark">
+    <ThemeProvider specifiedTheme={data.theme}>
       <App />
     </ThemeProvider>
   );

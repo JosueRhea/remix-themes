@@ -4,7 +4,7 @@ import pkg from './package.json';
 export const tsup: Options = {
   dts: true,
   entryPoints: ['src/index.ts'],
-  external: ['remix', 'react', 'react-dom'],
+  external: ['remix', 'react', 'react-dom', /^@remix\//],
   format: ['cjs'],  
   //   inject: ['src/react-shim.js'],
   // ! .cjs/.mjs doesn't work with Angular's webpack4 config by default!

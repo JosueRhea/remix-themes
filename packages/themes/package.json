@@ -25,6 +25,8 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@remix-run/node": "^1.19.2",
+    "@remix-run/react": "^1.19.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

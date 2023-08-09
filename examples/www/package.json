@@ -1,6 +1,7 @@
 {
   "private": true,
   "sideEffects": false,
+  "name": "www",
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
