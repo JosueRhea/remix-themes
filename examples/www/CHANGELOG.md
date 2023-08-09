@@ -5,4 +5,4 @@
 ### Patch Changes
 
 - Updated dependencies [759c548]
-  - @remix/themes@1.0.0
+  - @josuerhea/remix-themes@1.0.0

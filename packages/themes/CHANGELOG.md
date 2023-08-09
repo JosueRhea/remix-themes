@@ -1,4 +1,4 @@
-# @remix/themes
+# @josuerhea/remix-themes
 
 ## 1.0.0
 

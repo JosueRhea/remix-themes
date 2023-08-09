@@ -24,6 +24,9 @@ importers:
 
   examples/www:
     dependencies:
+      '@josuerhea/remix-themes':
+        specifier: workspace:*
+        version: link:../../packages/themes
       '@remix-run/css-bundle':
         specifier: ^1.19.2
         version: 1.19.2
@@ -36,9 +39,6 @@ importers:
       '@remix-run/serve':
         specifier: ^1.19.2
         version: 1.19.2
-      '@remix/themes':
-        specifier: workspace:*
-        version: link:../../packages/themes
       isbot:
         specifier: ^3.6.8
         version: 3.6.8

@@ -1,5 +1,5 @@
 import { json, type ActionFunction, redirect } from "@remix-run/node";
-import { isTheme } from "@remix/themes";
+import { isTheme } from "@josuerhea/remix-themes";
 import { getThemeSession } from "~/theme.server";
 
 export const action: ActionFunction = async ({ request }) => {
