@@ -5,6 +5,9 @@
   "repository": {
     "url": "https://github.com/JosueRhea/remix-themes"
   },
+  "files": [
+    "dist"
+  ],
   "homepage": "https://github.com/JosueRhea/remix-themes",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
