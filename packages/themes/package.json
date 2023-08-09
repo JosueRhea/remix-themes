@@ -2,12 +2,13 @@
   "name": "@remix/themes",
   "version": "1.0.0",
   "description": "",
+  "repository": {
+    "url": "https://github.com/JosueRhea/remix-themes"
+  },
+  "homepage": "https://github.com/JosueRhea/remix-themes",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "format": "rome format ./src --write",
     "lint": "rome check ./src",
